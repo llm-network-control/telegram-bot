@@ -29,6 +29,7 @@ async def get_json_dict(
 ) -> tuple[bool, list | dict, str]:
     """
     :param url: адрес в api
+    :param message: текст сообщения
     :param attempts: количество попыток переподключения
     :param timeout: время ожидания
     :return: [успех, словарь ответа, текст ошибки]
@@ -42,10 +43,15 @@ async def get_json_dict(
                 data = {
                     'message': message
                 }
+
+                print('SENDING REQUEST ON', url)
                 response = await client.post(url, json=data)
+                print('RESPONSE')
+                print(response)
                 response.raise_for_status()
                 payload = response.json()
-                if isinstance(payload, list):
+                print(payload)
+                if isinstance(payload, dict):
                     return True, payload, ''
                 return False, {}, 'Неправильный ответ от API'
             except httpx.TimeoutException as err:

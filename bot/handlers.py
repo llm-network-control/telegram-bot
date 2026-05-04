@@ -16,8 +16,8 @@ async def info_handler(message: Message) -> None:
     """
     Информация о боте для пользователя
     """
-    text = ('Привет. Я бот для поиска бесплатного WiFi'
-            'Скинь мне список WiFi сетей,'
+    text = ('Привет. Я бот для поиска бесплатного WiFi. '
+            'Скинь мне список WiFi сетей, '
             'а я попробую найти для них пароли')
     await message.answer(text)
 
@@ -54,6 +54,5 @@ async def chat_handler(message: Message) -> None:
         CHAT_URL,
         text,
     )
-    if not success:
-        answer = error
+    answer = answer['response'] if success else error
     await thinking.edit_text(answer)
