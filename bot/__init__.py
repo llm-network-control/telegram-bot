@@ -1,6 +1,11 @@
+"""
+Запуск бота
+"""
 from aiogram import Bot
-from .init_dispatcher import init_dispatcher
+
 from config import BOT_TOKEN
+
+from .init_dispatcher import init_dispatcher
 
 
 async def run_bot() -> None:

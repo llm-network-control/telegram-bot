@@ -1,7 +1,13 @@
+"""
+HTTP клиент
+"""
 import asyncio
+
 import httpx
+
+from config import DEFAULT_TIMEOUT, MAX_RETRY_ATTEMPTS
+
 from . import errors
-from config import MAX_RETRY_ATTEMPTS, DEFAULT_TIMEOUT
 
 
 async def is_not_found_status(status: int) -> bool:

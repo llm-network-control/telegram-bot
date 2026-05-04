@@ -2,12 +2,12 @@
 Основные обработчики
 """
 
-from aiogram import Router, F
+from aiogram import F, Router
 from aiogram.filters import Command
 from aiogram.types import Message
+
 from api_client.client import get_json_dict
 from config import CHAT_URL
-
 
 router = Router()
 

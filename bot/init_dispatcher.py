@@ -1,4 +1,8 @@
+"""
+Инициализация диспетчера бота
+"""
 from aiogram import Dispatcher
+
 from . import handlers
 
 

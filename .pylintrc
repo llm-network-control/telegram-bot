@@ -5,6 +5,4 @@ disable=
     R0913, # Too many arguments
     R0903, # Too few public methods
     R0801, # Similar lines
-
-
-ignore-paths=./alembic
+    W0718, # Catching too general exception Exception
