@@ -1,11 +1,12 @@
 """
 Tests api_client/client
 """
+from unittest.mock import AsyncMock
+
 import httpx
 import pytest
-from unittest.mock import AsyncMock
-from api_client.client import get_json_dict
 
+from api_client.client import get_json_dict
 
 positive_test_data = [
     ({"response": "ok"}, (True, {"response": "ok"}, '')),

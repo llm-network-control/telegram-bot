@@ -1,3 +1,4 @@
+# pylint: disable=attribute-defined-outside-init
 """
 Mocks for tests
 """
@@ -8,6 +9,9 @@ class MockInfoMessage:
     """
 
     async def answer(self, text: str):
+        """
+        Mock message.answer
+        """
         self.text = text
 
 
@@ -20,6 +24,9 @@ class MockTooShortAnswerMessage:
         self.text = '1234'
 
     async def answer(self, text: str):
+        """
+        Mock message.answer
+        """
         self.text = text
 
 
@@ -31,11 +38,17 @@ class PositiveMessage:
     def __init__(self):
         self.text = 'Я тестовый текст'
 
-    async def answer(self, _: str):
+    async def answer(self, _):
+        """
+        mock message.thinking
+        """
         self.thinking = PositiveMessage()
         return self.thinking
 
     async def edit_text(self, text: str):
+        """
+        Mock message.edit_text
+        """
         self.text = text
 
 

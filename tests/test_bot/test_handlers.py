@@ -2,7 +2,9 @@
 Tests bot/handlers
 """
 import pytest
+
 from bot import handlers
+
 from .mocks import (
     MockInfoMessage,
     MockTooShortAnswerMessage,

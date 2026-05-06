@@ -2,7 +2,9 @@
 Test bot/__init__.py
 """
 from unittest.mock import AsyncMock
+
 import pytest
+
 from bot import run_bot
 
 
