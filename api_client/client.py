@@ -49,14 +49,9 @@ async def get_json_dict(
                 data = {
                     'message': message
                 }
-
-                print('SENDING REQUEST ON', url)
                 response = await client.post(url, json=data)
-                print('RESPONSE')
-                print(response)
                 response.raise_for_status()
                 payload = response.json()
-                print(payload)
                 if isinstance(payload, dict):
                     return True, payload, ''
                 return False, {}, 'Неправильный ответ от API'
@@ -68,24 +63,20 @@ async def get_json_dict(
                 if await is_not_found_status(status):
                     return False, {}, f'Endpoint {url} не найден на сервере'
 
-                try:
-                    message = err.response.text
-                except Exception:
+                message = err.response.text
+                if not message:
                     message = "No response body"
                 if await is_retry_status(status) and attempt < attempts:
                     last_error = errors.ApiClientHttpError(status, message)
                 else:
-                    # raise ApiClientHttpError(status, message) from err
                     return False, {}, f'Ошибка API {message}'
             except httpx.RequestError as err:
                 last_error = errors.ApiClientNetworkError(str(err))
 
             if attempt < attempts:
                 await asyncio.sleep(timeout)
+        try:
+            raise last_error
+        except Exception as e:
+            return False, {}, str(e)
 
-        if last_error is not None:
-            try:
-                raise last_error
-            except Exception as e:
-                return False, {}, str(e)
-        return False, {}, 'Неизвестная ошибка API'
