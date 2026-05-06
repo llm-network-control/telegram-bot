@@ -14,4 +14,5 @@ REST_API_HOST = getenv('REST_API_HOST', '0.0.0.0')
 REST_API_PORT = getenv('CLIENT_PORT', '8000')
 
 CHAT_URL = f'http://{REST_API_HOST}:{REST_API_PORT}/chat'
-BOT_TOKEN = getenv('BOT_TOKEN')
+TEST_TOKEN = '1111111111:TTTt9ttttTttt-T_tttttttttttgggggg4T'
+BOT_TOKEN = getenv('BOT_TOKEN', TEST_TOKEN)
